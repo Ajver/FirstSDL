@@ -1,3 +1,2 @@
 ﻿  main.cpp
-d:\git repositories\firstsdl\firstsdl\firstsdl\main.cpp(9): warning C4101: "window": lokalna zmienna, do której nie istnieje odwołanie
   FirstSDL.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe
