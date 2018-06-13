@@ -1,3 +1,3 @@
-﻿main.obj : error LNK2019: nierozpoznany zewnętrzny symbol _SDL_Init przywołany w funkcji "int __cdecl SDL_main(void)" (?SDL_main@@YAHXZ)
-MSVCRTD.lib(exe_main.obj) : error LNK2019: nierozpoznany zewnętrzny symbol _main przywołany w funkcji "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
-D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe : fatal error LNK1120: liczba nierozpoznanych elementów zewnętrznych: 2
+﻿  main.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\main.cpp(9): warning C4101: "window": lokalna zmienna, do której nie istnieje odwołanie
+  FirstSDL.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe
