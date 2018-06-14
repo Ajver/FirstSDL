@@ -20,6 +20,9 @@ public:
 
 	void addAtribute(const std::string&);
 
+	void use();
+	void unuse();
+
 private:
 	int numAttributes;
 

@@ -169,3 +169,23 @@ void GLSLProgram::addAtribute(const std::string &attributeName)
 {
 	glBindAttribLocation(programID, numAttributes++, attributeName.c_str());
 }
+
+void GLSLProgram::use()
+{
+	glUseProgram(programID);
+
+	for (int i = 0; i < numAttributes; i++)
+	{
+		glEnableVertexAttribArray(i);
+	}
+}
+
+void GLSLProgram::unuse()
+{
+	glUseProgram(0);
+
+	for (int i = 0; i < numAttributes; i++)
+	{
+		glDisableVertexAttribArray(i);
+	}
+}
