@@ -2,12 +2,6 @@
 
 #include <string>
 
-void fatalError(std::string errorString)
-{
-	std::cout << errorString << std::endl;
-	system("pause");
-	SDL_Quit();
-}
 
 MainGame::MainGame()
 {
@@ -35,7 +29,7 @@ void MainGame::processInput()
 		{
 		case SDL_QUIT: gameState = GameState::EXIT; break;
 		case SDL_MOUSEMOTION: 
-			std::cout << "X> " << evnt.motion.x << "  |  " << evnt.motion.y << std::endl;
+			//std::cout << "X> " << evnt.motion.x << "  |  " << evnt.motion.y << std::endl;
 			break;
 		}
 	}
@@ -71,6 +65,9 @@ void MainGame::initSystems()
 void MainGame::run() 
 {
 	initSystems();
+
+	testSprite.init(-1, -1, 1, 1);
+
 	gameLoop();
 }
 
@@ -89,10 +86,8 @@ void MainGame::render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	
+	testSprite.render();
 
-
-
-	std::cout << ".";
 
 	SDL_GL_SwapWindow(window);
 

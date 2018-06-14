@@ -5,6 +5,10 @@
 #include <SDL/SDL.h>
 #include <GL/glew.h>
 
+#include "Sprite.h"
+#include "Errors.h"
+
+
 
 enum class GameState 
 {
@@ -26,6 +30,8 @@ private:
 	SDL_Window *window;
 
 	GameState gameState;
+
+	Sprite testSprite;
 
 	void initSystems();
 	void gameLoop();
