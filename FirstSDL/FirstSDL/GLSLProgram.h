@@ -18,7 +18,11 @@ public:
 
 	void linkShaders();
 
+	void addAtribute(const std::string&);
+
 private:
+	int numAttributes;
+
 	GLuint programID;
 
 	GLuint vertexShaderID;

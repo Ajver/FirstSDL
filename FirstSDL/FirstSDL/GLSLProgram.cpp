@@ -2,10 +2,11 @@
 
 
 
-GLSLProgram::GLSLProgram() : 
-	programID(0), 
-	vertexShaderID(0), 
-	fragmentShaderID(0)
+GLSLProgram::GLSLProgram() :
+	programID(0),
+	vertexShaderID(0),
+	fragmentShaderID(0),
+	numAttributes(0)
 {
 	
 }
@@ -112,7 +113,6 @@ void GLSLProgram::compileShader(const std::string& filePath, GLuint id)
 
 		glDeleteShader(id);
 
-
 		std::printf("%s\n", &errorLog[0]);
 		fatalError("Shader " + filePath + "failed to compile!");
 	}
@@ -141,8 +141,8 @@ void GLSLProgram::linkShaders()
 		glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &maxLength);
 
 		// The maxLength includes the NULL character
-		std::vector<GLchar> infoLog(maxLength);
-		glGetProgramInfoLog(programID, maxLength, &maxLength, &infoLog[0]);
+		std::vector<char> errorLog(maxLength);
+		glGetProgramInfoLog(programID, maxLength, &maxLength, &errorLog[0]);
 
 		// We don't need the program anymore.
 		glDeleteProgram(programID);
@@ -153,10 +153,19 @@ void GLSLProgram::linkShaders()
 		// Use the infoLog as you see fit.
 
 		// In this simple program, we'll just leave
-		return;
+		std::printf("%s\n", &errorLog[0]);
+		fatalError("Shader failed to link!");
 	}
 
 	// Always detach shaders after a successful link.
 	glDetachShader(programID, vertexShaderID);
 	glDetachShader(programID, fragmentShaderID);
+	glDeleteShader(vertexShaderID);
+	glDeleteShader(fragmentShaderID);
+}
+
+
+void GLSLProgram::addAtribute(const std::string &attributeName)
+{
+	glBindAttribLocation(programID, numAttributes++, attributeName.c_str());
 }

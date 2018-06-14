@@ -60,6 +60,7 @@ void MainGame::initSystems()
 
 	glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
 
+	initShaders();
 }
 
 void MainGame::run() 
@@ -91,4 +92,11 @@ void MainGame::render()
 
 	SDL_GL_SwapWindow(window);
 
+}
+
+void MainGame::initShaders()
+{
+	colorProgram.compileShaders("Shaders/colorShading.vert", "Shaders/colorShading.frag");
+	colorProgram.addAtribute("vertexPosition");
+	colorProgram.linkShaders();
 }

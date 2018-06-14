@@ -5,9 +5,9 @@
 #include <SDL/SDL.h>
 #include <GL/glew.h>
 
-#include "Sprite.h"
 #include "Errors.h"
-
+#include "Sprite.h"
+#include "GLSLProgram.h"
 
 
 enum class GameState 
@@ -33,7 +33,10 @@ private:
 
 	Sprite testSprite;
 
+	GLSLProgram colorProgram;
+
 	void initSystems();
+	void initShaders();
 	void gameLoop();
 	void processInput();
 	void render();
