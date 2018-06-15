@@ -67,8 +67,7 @@ void MainGame::run()
 {
 	initSystems();
 
-	testSprite.init(-1, -1, 1, 1);
-
+	testSprite.init(-1, -1, 2, 2);
 	gameLoop();
 }
 
@@ -86,7 +85,6 @@ void MainGame::render()
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	
 	colorProgram.use();
 	
 
@@ -103,6 +101,7 @@ void MainGame::initShaders()
 {
 	colorProgram.compileShaders("Shaders/colorShading.vert", "Shaders/colorShading.frag");
 	colorProgram.addAtribute("vertexPosition");
+	colorProgram.addAtribute("vertexColor");
 	colorProgram.linkShaders();
 }
 

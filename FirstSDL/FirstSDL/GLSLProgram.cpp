@@ -19,6 +19,11 @@ GLSLProgram::~GLSLProgram()
 
 void GLSLProgram::compileShaders(const std::string &vertexShaderFilePath, const std::string &fragmentShaderFilePath)
 {
+	// Vertex and fragment shaders are successfully compiled.
+	// Now time to link them together into a program.
+	// Get a program object.
+	programID = glCreateProgram();
+
 	vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 
 	if (vertexShaderID == 0)
@@ -120,11 +125,6 @@ void GLSLProgram::compileShader(const std::string& filePath, GLuint id)
 
 void GLSLProgram::linkShaders()
 {
-	// Vertex and fragment shaders are successfully compiled.
-	// Now time to link them together into a program.
-	// Get a program object.
-	programID = glCreateProgram();
-
 	// Attach our shaders to our program
 	glAttachShader(programID, vertexShaderID);
 	glAttachShader(programID, fragmentShaderID);
@@ -149,8 +149,7 @@ void GLSLProgram::linkShaders()
 		// Don't leak shaders either.
 		glDeleteShader(vertexShaderID);
 		glDeleteShader(fragmentShaderID);
-
-		// Use the infoLog as you see fit.
+		
 
 		// In this simple program, we'll just leave
 		std::printf("%s\n", &errorLog[0]);
