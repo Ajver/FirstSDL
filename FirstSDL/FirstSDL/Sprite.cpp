@@ -24,27 +24,43 @@ void Sprite::init(float nx, float ny, float nw, float nh)
 	if (vboID == 0)
 		glGenBuffers(1, &vboID); 
 	
-	float vertexData[12];
+	Vertex vertexData[6];
 
 	// First triangle
-	vertexData[0] = x + w;
-	vertexData[1] = y + w;
+	vertexData[0].position.x = x + w;
+	vertexData[0].position.y = y + w;
 
-	vertexData[2] = x;
-	vertexData[3] = y + h;
+	vertexData[1].position.x = x;
+	vertexData[1].position.y = y + h;
 
-	vertexData[4] = x;
-	vertexData[5] = y;
+	vertexData[2].position.x = x;
+	vertexData[2].position.y = y;
 
 	// Second triangle
-	vertexData[6] = x;
-	vertexData[7] = y;
+	vertexData[3].position.x = x;
+	vertexData[3].position.y = y;
 
-	vertexData[8] = x + w;
-	vertexData[9] = y;
+	vertexData[4].position.x = x + w;
+	vertexData[4].position.y = y;
 
-	vertexData[10] = x + w;
-	vertexData[11] = y + h;
+	vertexData[5].position.x = x + w;
+	vertexData[5].position.y = y + h;
+
+	for (int i = 0; i < 6; i++)
+	{
+		vertexData[i].color.r = 255;
+		vertexData[i].color.g = 0;
+		vertexData[i].color.b = 255;
+		vertexData[i].color.a = 255;
+	}
+
+	vertexData[1].color.r = 0;
+	vertexData[1].color.g = 0;
+	vertexData[1].color.b = 255;
+
+	vertexData[4].color.r = 10;
+	vertexData[4].color.g = 255;
+	vertexData[4].color.b = 25;
 
 	glBindBuffer(GL_ARRAY_BUFFER, vboID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
@@ -56,7 +72,14 @@ void Sprite::render()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, vboID);
 
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+	// Position			  
+	//Bytes, How many vars, type, normalize?, size, pointer
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, position)));
+
+	// Color 
+	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)(offsetof(Vertex, color)));
+	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)(offsetof(Vertex, color)));
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
