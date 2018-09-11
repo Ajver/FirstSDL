@@ -20,6 +20,8 @@ public:
 
 	void addAtribute(const std::string&);
 
+	GLuint getUniformLocation(const std::string& uniformName);
+
 	void use();
 	void unuse();
 

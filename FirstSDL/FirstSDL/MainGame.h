@@ -40,5 +40,7 @@ private:
 	void gameLoop();
 	void processInput();
 	void render();
+
+	float _time;
 };
 

@@ -1,17 +1,21 @@
 #pragma once
 
+struct Position
+{
+	float x, y;
+};
+
+struct Color
+{
+	GLubyte r;
+	GLubyte g;
+	GLubyte b;
+	GLubyte a;
+};
+
 struct Vertex
 {
-	struct Position
-	{
-		float x, y;
-	} position;
+	Position position;
 	
-	struct Color
-	{
-		GLubyte r;
-		GLubyte g;
-		GLubyte b;
-		GLubyte a;
-	} color;
+	Color color;
 };

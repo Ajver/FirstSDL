@@ -3,15 +3,13 @@
 #include <string>
 
 
-MainGame::MainGame()
+MainGame::MainGame() :
+	WW(1024),
+	WH(768),
+	_time(0),
+	gameState(GameState::PLAY);
+	window(nullptr)
 {
-	WW = 1024;
-	WH = 768;
-
-	gameState = GameState::PLAY;
-
-	window = nullptr;
-
 	run();
 }
 
@@ -76,6 +74,7 @@ void MainGame::gameLoop()
 	while (gameState != GameState::EXIT) 
 	{
 		processInput(); 
+		_time += 0.01f;
 		render();
 	}
 }
@@ -87,9 +86,10 @@ void MainGame::render()
 
 	colorProgram.use();
 	
+	GLuint timeLocation = colorProgram.getUniformLocation("time");
+	glUniform1f(timeLocation, _time);
 
 	testSprite.render();
-
 
 	colorProgram.unuse();
 
