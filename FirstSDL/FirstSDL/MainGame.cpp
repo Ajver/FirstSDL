@@ -7,7 +7,7 @@ MainGame::MainGame() :
 	WW(1024),
 	WH(768),
 	_time(0),
-	gameState(GameState::PLAY);
+	gameState(GameState::PLAY),
 	window(nullptr)
 {
 	run();
