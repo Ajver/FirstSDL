@@ -11,9 +11,7 @@ MainGame::MainGame()
 	gameState = GameState::PLAY;
 
 	window = nullptr;
-
-	run();
-}
+} 
 
 
 MainGame::~MainGame() 
@@ -75,8 +73,13 @@ void MainGame::gameLoop()
 {
 	while (gameState != GameState::EXIT) 
 	{
-		processInput(); 
-		render();
+		switch (gameState)
+		{
+		case GameState::PLAY:
+			processInput();
+			render();
+			break;
+		}
 	}
 }
 
