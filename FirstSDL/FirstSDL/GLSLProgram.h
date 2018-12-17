@@ -20,6 +20,8 @@ public:
 
 	void addAtribute(const std::string&);
 
+	GLuint getUnitformLocation(const std::string &);
+
 	void use();
 	void unuse();
 

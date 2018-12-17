@@ -1,21 +1,22 @@
 #include "MainGame.h"
+#include "ImageLoader.h"
 
 #include <string>
 
 
-MainGame::MainGame()
+MainGame::MainGame() : 
+	time(0.0f), 
+	WW(1024), 
+	WH(768), 
+	window(nullptr), 
+	gameState(GameState::PLAY)
 {
-	WW = 1024;
-	WH = 768;
-
-	gameState = GameState::PLAY;
-
-	window = nullptr;
 } 
 
 
 MainGame::~MainGame() 
-{}
+{
+}
 
 void MainGame::processInput() 
 {
@@ -66,6 +67,9 @@ void MainGame::run()
 	initSystems();
 
 	testSprite.init(-1, -1, 2, 2);
+
+	//playerTexture = ImageLoader::loadPNG("Graphics/Player.png");
+
 	gameLoop();
 }
 
@@ -76,6 +80,7 @@ void MainGame::gameLoop()
 		switch (gameState)
 		{
 		case GameState::PLAY:
+			time += 0.001f;
 			processInput();
 			render();
 			break;
@@ -90,7 +95,12 @@ void MainGame::render()
 
 	colorProgram.use();
 	
+	GLint timeLocation = colorProgram.getUnitformLocation("time");
 
+	// Send time var into GPU
+	glUniform1f(timeLocation, time);
+
+	// Draw sprite
 	testSprite.render();
 
 
