@@ -1,2 +1,3 @@
 ﻿  MainGame.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(137): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
   FirstSDL.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe

@@ -1,5 +1,4 @@
 #include "MainGame.h"
-#include "ImageLoader.h"
 
 #include <string>
 
@@ -66,7 +65,12 @@ void MainGame::run()
 {
 	initSystems();
 
-	testSprite.init(-1, -1, 2, 2);
+	// Initialize sprites
+	sprites.push_back(new Sprite());
+	sprites.back()->init(-1, -1, 1, 1, "Graphics/ItemSpawner.png");
+
+	sprites.push_back(new Sprite());
+	sprites.back()->init(0, 0, 1, 1, "Graphics/ItemSpawner.png");
 
 	//playerTexture = ImageLoader::loadPNG("Graphics/Player.png");
 
@@ -113,19 +117,30 @@ void MainGame::gameLoop()
 void MainGame::render()
 {
 	glClearDepth(1.0);
+
+	// Clear the color and depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	// Enable the shader
 	colorProgram.use();
-	
+
+	// We are using texture uint 0
+	glActiveTexture(GL_TEXTURE0);
+
+	// Get uniform location
 	GLint timeLocation = colorProgram.getUnitformLocation("time");
 
 	// Send time var into GPU
 	glUniform1f(timeLocation, time);
 
 	// Draw sprite
-	testSprite.render();
+	for (int i = 0; i < sprites.size(); i++) {
+		sprites[i]->render();
+	}
 
+	glBindTexture(GL_TEXTURE_2D, 0);
 
+	// Disable the shader
 	colorProgram.unuse();
 
 	SDL_GL_SwapWindow(window);

@@ -10,6 +10,7 @@
 #include "GLSLProgram.h"
 #include "GLTexture.h"
 
+#include <vector>
 
 enum class GameState 
 {
@@ -32,9 +33,8 @@ private:
 
 	GameState gameState;
 
-	Sprite testSprite;
-	float time;
-	GLTexture playerTexture;
+	std::vector<Sprite*> sprites;
+	float time; 
 
 	GLSLProgram colorProgram;
 

@@ -1,6 +1,6 @@
 #include "Sprite.h"
 
-
+#include "ResourceManager.h"
 
 Sprite::Sprite()
 {
@@ -14,12 +14,14 @@ Sprite::~Sprite()
 		glDeleteBuffers(1, &vboID);
 }
 
-void Sprite::init(float nx, float ny, float nw, float nh)
+void Sprite::init(float nx, float ny, float nw, float nh, std::string texturePath)
 {
 	x = nx;
 	y = ny;
 	w = nw;
 	h = nh;
+
+	texture = ResourceManager::getTexture(texturePath);
 
 	if (vboID == 0)
 		glGenBuffers(1, &vboID); 
@@ -70,8 +72,13 @@ void Sprite::init(float nx, float ny, float nw, float nh)
 
 void Sprite::render()
 {
+	glBindTexture(GL_TEXTURE_2D, texture.id);
+
+
 	glBindBuffer(GL_ARRAY_BUFFER, vboID);
 
+
+	glEnableVertexAttribArray(0);
 
 	// Position			  
 	//Bytes, How many vars, type, normalize?, size, pointer
@@ -79,11 +86,13 @@ void Sprite::render()
 
 	// Color 
 	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)(offsetof(Vertex, color)));
-	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)(offsetof(Vertex, color)));
+
+	// UV
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, color)));
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
-	glEnableVertexAttribArray(0);
+	glDisableVertexAttribArray(0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

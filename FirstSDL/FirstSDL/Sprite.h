@@ -2,8 +2,10 @@
 
 #include <GL/glew.h>
 #include <cstddef>
+#include <string>
 
 #include "Vertex.h"
+#include "GLTexture.h"
 
 class Sprite
 {
@@ -11,7 +13,7 @@ public:
 	Sprite();
 	~Sprite();
 
-	void init(float, float, float, float);
+	void init(float, float, float, float, std::string);
 	void render();
 	
 private:
@@ -19,5 +21,7 @@ private:
 
 	// Vertex Buffer Object ID
 	GLuint vboID;
+
+	GLTexture texture;
 };
 

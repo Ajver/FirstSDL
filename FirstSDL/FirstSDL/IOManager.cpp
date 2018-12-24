@@ -12,7 +12,7 @@ bool IOManager::readFileToBuffer(std::string filePath, std::vector<unsigned char
 	}
 
 	// Seek to the end
-	file.seekg(0, std::ios::beg);
+	file.seekg(0, std::ios::end);
 
 	// Get the file size
 	// tellg() returns number of bytes 
