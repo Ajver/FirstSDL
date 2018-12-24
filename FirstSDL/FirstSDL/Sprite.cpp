@@ -2,9 +2,9 @@
 
 #include "ResourceManager.h"
 
-Sprite::Sprite()
+Sprite::Sprite() : 
+	vboID(0)
 {
-	vboID = 0;
 }
 
 
@@ -67,6 +67,7 @@ void Sprite::init(float nx, float ny, float nw, float nh, std::string texturePat
 	glBindBuffer(GL_ARRAY_BUFFER, vboID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
+	// Unbind the buffer
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
@@ -77,22 +78,26 @@ void Sprite::render()
 
 	glBindBuffer(GL_ARRAY_BUFFER, vboID);
 
-
 	glEnableVertexAttribArray(0);
 
+
 	// Position			  
-	//Bytes, How many vars, type, normalize?, size, pointer
+	// index, How many vars, type, normalize?, size, pointer
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, position)));
 
 	// Color 
 	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)(offsetof(Vertex, color)));
 
+	// WHAT IS UV?
 	// UV
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, color)));
 
+	// Draw Triangles!
 	glDrawArrays(GL_TRIANGLES, 0, 6);
+
 
 	glDisableVertexAttribArray(0);
 
+	// Unbind the buffer
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
