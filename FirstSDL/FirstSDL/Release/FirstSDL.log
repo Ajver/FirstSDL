@@ -1,0 +1,16 @@
+﻿  Errors.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\errors.h(5): fatal error C1083: Nie można otworzyć pliku dołącz: 'SDL/SDL.h': No such file or directory
+  GLSLProgram.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\glslprogram.h(4): fatal error C1083: Nie można otworzyć pliku dołącz: 'GL/glew.h': No such file or directory
+  ImageLoader.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\gltexture.h(3): fatal error C1083: Nie można otworzyć pliku dołącz: 'GL/glew.h': No such file or directory
+  IOManager.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\iomanager.cpp(19): warning C4244: "inicjowanie": konwersja z "std::streamoff" do "int", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\iomanager.cpp(25): warning C4244: "-=": konwersja z "std::streamoff" do "int", możliwa utrata danych
+  main.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.h(5): fatal error C1083: Nie można otworzyć pliku dołącz: 'SDL/SDL.h': No such file or directory
+  MainGame.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.h(5): fatal error C1083: Nie można otworzyć pliku dołącz: 'SDL/SDL.h': No such file or directory
+  picoPNG.cpp
+  Sprite.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.h(3): fatal error C1083: Nie można otworzyć pliku dołącz: 'GL/glew.h': No such file or directory

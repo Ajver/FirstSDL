@@ -25,7 +25,11 @@ bool IOManager::readFileToBuffer(std::string filePath, std::vector<unsigned char
 	fileSize -= file.tellg();
 
 	buffer.resize(fileSize);
-	file.read((char*)&(buffer[0]), fileSize);
+
+	if (fileSize == 0) 
+		return false;
+
+	file.read((char*)&buffer[0], fileSize);
 	file.close();
 
 	return true;

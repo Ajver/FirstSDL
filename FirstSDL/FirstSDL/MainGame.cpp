@@ -73,10 +73,19 @@ void MainGame::run()
 	gameLoop();
 }
 
+#include <chrono>
+
 void MainGame::gameLoop() 
 {
+	auto start = std::chrono::system_clock::now();
+	auto timer = start;
+
+	int fpsCount = 0;
+
 	while (gameState != GameState::EXIT) 
 	{
+		fpsCount++;
+
 		switch (gameState)
 		{
 		case GameState::PLAY:
@@ -85,6 +94,19 @@ void MainGame::gameLoop()
 			render();
 			break;
 		}
+
+		auto stop = std::chrono::system_clock::now();
+
+		// Elapsed time
+		std::chrono::duration<float> et = stop - start;
+		std::chrono::duration<float> timerElapse = stop - timer;
+
+		if (timerElapse.count() >= 1.0f) {
+			std::cout << "FPS: " << fpsCount << std::endl;
+			fpsCount = 0;
+			timer = std::chrono::system_clock::now();
+		}
+
 	}
 }
 

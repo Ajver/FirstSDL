@@ -12,7 +12,7 @@ GLTexture ImageLoader::loadPNG(std::string filePath)
 	unsigned long width;
 	unsigned long height;
 
-	if (IOManager::readFileToBuffer(filePath, in))
+	if (!IOManager::readFileToBuffer(filePath, in))
 	{
 		fatalError("Failed to load PNG file to buffer: " + filePath);
 	}
