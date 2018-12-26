@@ -5,11 +5,12 @@
 
 #include <string>
 
+#include <glm/glm.hpp>
 
 MainGame::MainGame() :
 	time(0.0f),
-	WW(1024),
-	WH(768),
+	screenWidth(1024),
+	screenHeight(768),
 	gameState(GameState::PLAY),
 	maxFPS(60.0f)
 {
@@ -18,11 +19,18 @@ MainGame::MainGame() :
 
 MainGame::~MainGame() 
 {
+	for (int i = 0; i < sprites.size(); i++)
+	{
+		delete sprites[i];
+	}
 }
 
 void MainGame::processInput() 
 {
 	SDL_Event evnt;
+
+	constexpr float CAMERA_SPEED = 20.0f;
+	constexpr float SCALE_SPEED = 0.1f;
 
 	while (SDL_PollEvent(&evnt))
 	{
@@ -31,6 +39,29 @@ void MainGame::processInput()
 		case SDL_QUIT: gameState = GameState::EXIT; break;
 		case SDL_MOUSEMOTION: 
 			//std::cout << "X> " << evnt.motion.x << "  |  " << evnt.motion.y << std::endl;
+			break;
+		case SDL_KEYDOWN:
+			switch (evnt.key.keysym.sym)
+			{
+			case SDLK_w:
+				camera.setPosition(camera.getPosition() + glm::vec2(0.0f, CAMERA_SPEED));
+				break;
+			case SDLK_s:
+				camera.setPosition(camera.getPosition() + glm::vec2(0.0f, -CAMERA_SPEED));
+				break;
+			case SDLK_a:
+				camera.setPosition(camera.getPosition() + glm::vec2(-CAMERA_SPEED, 0.0f));
+				break;
+			case SDLK_d:
+				camera.setPosition(camera.getPosition() + glm::vec2(CAMERA_SPEED, 0.0f));
+				break;
+			case SDLK_q:
+				camera.setScale(camera.getScale() - SCALE_SPEED);
+				break;
+			case SDLK_e:
+				camera.setScale(camera.getScale() + SCALE_SPEED);
+				break;
+			}
 			break;
 		}
 	}
@@ -41,7 +72,9 @@ void MainGame::initSystems()
 	// Init engine
 	Bengine::init();
 
-	window.create("Game engine!!!", WW, WH, Bengine::WindowFlags::DEFAULT);
+	window.create("Game engine!!!", screenWidth, screenHeight, Bengine::WindowFlags::DEFAULT);
+	
+	camera.init(screenWidth, screenHeight);
 
 	initShaders();
 }
@@ -52,13 +85,10 @@ void MainGame::run()
 
 	// Initialize sprites
 	sprites.push_back(new Bengine::Sprite());
-	sprites.back()->init(-0.5f, -1, 1, 1, "Graphics/ItemSpawner.png");
-
-	//sprites.push_back(new Sprite());
-	//sprites.back()->init(0, 0, 1, 1, "Graphics/ItemSpawner.png");
+	sprites.back()->init(0.0f, 0.0f, screenHeight * 0.5f, screenHeight * 0.5f, "Graphics/ItemSpawner.png");
 
 	sprites.push_back(new Bengine::Sprite());
-	sprites.back()->init(0, 0, 1, 1, "Graphics/Player.png");
+	sprites.back()->init(screenWidth * 0.5f, 0, screenHeight * 0.5f, screenHeight * 0.5f, "Graphics/Player.png");
 
 	gameLoop();
 }
@@ -75,6 +105,8 @@ void MainGame::gameLoop()
 		float startTicks = SDL_GetTicks();
 
 		fpsCount++;
+
+		camera.update();
 
 		switch (gameState)
 		{
@@ -125,11 +157,11 @@ void MainGame::render()
 	GLint textureLocation = colorProgram.getUnitformLocation("mySampler");
 	glUniform1i(textureLocation, 0);
 
-	// Get uniform location
-	//GLint timeLocation = colorProgram.getUnitformLocation("time");
+	// Set camera matrix
+	GLint pLocation = colorProgram.getUnitformLocation("P");
+	glm::mat4 cameraMatrix = camera.getCameraMatrix();
 
-	// Send time var into GPU
-	//glUniform1f(timeLocation, time);
+	glUniformMatrix4fv(pLocation, 1, GL_FALSE, &(cameraMatrix[0][0]));
 
 	// Draw sprite
 	for (int i = 0; i < sprites.size(); i++) {

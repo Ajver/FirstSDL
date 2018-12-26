@@ -10,6 +10,7 @@
 #include <Bengine/GLSLProgram.h>
 #include <Bengine/GLTexture.h>
 #include <Bengine/Window.h>
+#include <Bengine/Camera2D.h>
 
 #include <vector>
 
@@ -29,8 +30,9 @@ public:
 	void run();
 
 private:
-	int WW, WH;
+	int screenWidth, screenHeight;
 	Bengine::Window window;
+	Bengine::Camera2D camera;
 
 	GameState gameState;
 
