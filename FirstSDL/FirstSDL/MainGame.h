@@ -33,10 +33,14 @@ private:
 
 	GameState gameState;
 
+	GLTexture playerTexture;
 	std::vector<Sprite*> sprites;
 	float time; 
-
+	
 	GLSLProgram colorProgram;
+
+	float fps;
+	float maxFPS;
 
 	void initSystems();
 	void initShaders();

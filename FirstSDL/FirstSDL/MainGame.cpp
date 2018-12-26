@@ -1,14 +1,17 @@
 #include "MainGame.h"
 
+#include "ImageLoader.h"
+
 #include <string>
 
 
-MainGame::MainGame() : 
-	time(0.0f), 
-	WW(1024), 
-	WH(768), 
-	window(nullptr), 
-	gameState(GameState::PLAY)
+MainGame::MainGame() :
+	time(0.0f),
+	WW(1024),
+	WH(768),
+	window(nullptr),
+	gameState(GameState::PLAY),
+	maxFPS(60.0f)
 {
 } 
 
@@ -38,6 +41,8 @@ void MainGame::initSystems()
 	// Initialize SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
 
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
 	window = SDL_CreateWindow("First SDL program", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
 		WW, WH, SDL_WINDOW_OPENGL);	
 
@@ -54,9 +59,13 @@ void MainGame::initSystems()
 	if (error != GLEW_OK)
 		fatalError("Glew could not be initialized!");
 
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	// Chech the OpenGL version
+	printf("*** Open GL Version: %s ***\n", glGetString(GL_VERSION));
 
 	glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
+
+	// Set Vsync on
+	//SDL_GL_SetSwapInterval(1);
 
 	initShaders();
 }
@@ -67,27 +76,28 @@ void MainGame::run()
 
 	// Initialize sprites
 	sprites.push_back(new Sprite());
-	sprites.back()->init(-1, -1, 1, 1, "Graphics/ItemSpawner.png");
+	sprites.back()->init(-0.5f, -1, 1, 1, "Graphics/ItemSpawner.png");
+
+	//sprites.push_back(new Sprite());
+	//sprites.back()->init(0, 0, 1, 1, "Graphics/ItemSpawner.png");
 
 	sprites.push_back(new Sprite());
-	sprites.back()->init(0, 0, 1, 1, "Graphics/ItemSpawner.png");
-
-	//playerTexture = ImageLoader::loadPNG("Graphics/Player.png");
+	sprites.back()->init(0, 0, 1, 1, "Graphics/Player.png");
 
 	gameLoop();
 }
 
-#include <chrono>
-
 void MainGame::gameLoop() 
 {
-	auto start = std::chrono::system_clock::now();
-	auto timer = start;
-
 	int fpsCount = 0;
+	float timer = SDL_GetTicks();
+	float elapsedTime = 0;
 
 	while (gameState != GameState::EXIT) 
 	{
+		// Used for delay
+		float startTicks = SDL_GetTicks();
+
 		fpsCount++;
 
 		switch (gameState)
@@ -96,21 +106,29 @@ void MainGame::gameLoop()
 			time += 0.001f;
 			processInput();
 			render();
-			break;
 		}
 
-		auto stop = std::chrono::system_clock::now();
+		//for (int i = 0; i < 400000; i++)
+		//{
+		//	double r = rand() % (i * 2 % 2 + 1) + 1;
+		//}
 
-		// Elapsed time
-		std::chrono::duration<float> et = stop - start;
-		std::chrono::duration<float> timerElapse = stop - timer;
+		elapsedTime = SDL_GetTicks() - startTicks;
+		
+		// Limit the fps to the max fps
+		if (1000.0f / maxFPS > elapsedTime) {
+			SDL_Delay(1000.0f / maxFPS - elapsedTime);
+		}
 
-		if (timerElapse.count() >= 1.0f) {
+		elapsedTime = (SDL_GetTicks() - startTicks) / 1000.0f;
+	
+		if (SDL_GetTicks() - timer >= 1000.0f) {
+			fps = fpsCount;
 			std::cout << "FPS: " << fpsCount << std::endl;
+			std::cout << "ET: " << elapsedTime << std::endl;
 			fpsCount = 0;
-			timer = std::chrono::system_clock::now();
+			timer += 1000.0f;
 		}
-
 	}
 }
 
@@ -126,18 +144,23 @@ void MainGame::render()
 
 	// We are using texture uint 0
 	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, playerTexture.id);
+	
+	GLint textureLocation = colorProgram.getUnitformLocation("mySampler");
+	glUniform1i(textureLocation, 0);
 
 	// Get uniform location
-	GLint timeLocation = colorProgram.getUnitformLocation("time");
+	//GLint timeLocation = colorProgram.getUnitformLocation("time");
 
 	// Send time var into GPU
-	glUniform1f(timeLocation, time);
+	//glUniform1f(timeLocation, time);
 
 	// Draw sprite
 	for (int i = 0; i < sprites.size(); i++) {
 		sprites[i]->render();
 	}
 
+	// Disable all textures
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	// Disable the shader
@@ -152,6 +175,6 @@ void MainGame::initShaders()
 	colorProgram.compileShaders("Shaders/colorShading.vert", "Shaders/colorShading.frag");
 	colorProgram.addAtribute("vertexPosition");
 	colorProgram.addAtribute("vertexColor");
+	colorProgram.addAtribute("vertexUV");
 	colorProgram.linkShaders();
 }
-

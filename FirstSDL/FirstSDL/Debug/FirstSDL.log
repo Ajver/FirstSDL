@@ -1,18 +1,7 @@
-﻿  Sprite.cpp
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(19): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(20): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(21): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(22): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(32): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(33): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(35): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(36): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(38): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(39): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(42): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(43): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(45): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(46): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(48): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\sprite.cpp(49): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+﻿  MainGame.cpp
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(93): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(99): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(120): warning C4244: "argument": konwersja z "float" do "Uint32", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(126): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(159): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
   FirstSDL.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe
