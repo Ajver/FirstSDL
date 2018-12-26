@@ -6,4 +6,7 @@
 
 #include <cstdlib>
 
-extern void fatalError(std::string);
+namespace Bengine
+{
+	extern void fatalError(std::string);
+}

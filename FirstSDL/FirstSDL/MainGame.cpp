@@ -1,6 +1,7 @@
 #include "MainGame.h"
 
-#include "ImageLoader.h"
+#include <Bengine/ImageLoader.h>
+#include <Bengine/Bengine.h>
 
 #include <string>
 
@@ -9,7 +10,6 @@ MainGame::MainGame() :
 	time(0.0f),
 	WW(1024),
 	WH(768),
-	window(nullptr),
 	gameState(GameState::PLAY),
 	maxFPS(60.0f)
 {
@@ -38,34 +38,10 @@ void MainGame::processInput()
 
 void MainGame::initSystems() 
 {
-	// Initialize SDL
-	SDL_Init(SDL_INIT_EVERYTHING);
+	// Init engine
+	Bengine::init();
 
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
-	window = SDL_CreateWindow("First SDL program", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
-		WW, WH, SDL_WINDOW_OPENGL);	
-
-	if (window == nullptr) 
-		fatalError("SDL Window could not be created!");
-	
-	SDL_GLContext glContext = SDL_GL_CreateContext(window);
-
-	if (glContext == nullptr)
-		fatalError("SDL_GL context could not be created!");
-
-	GLenum error = glewInit();
-
-	if (error != GLEW_OK)
-		fatalError("Glew could not be initialized!");
-
-	// Chech the OpenGL version
-	printf("*** Open GL Version: %s ***\n", glGetString(GL_VERSION));
-
-	glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
-
-	// Set Vsync on
-	//SDL_GL_SetSwapInterval(1);
+	window.create("Game engine!!!", WW, WH, Bengine::WindowFlags::DEFAULT);
 
 	initShaders();
 }
@@ -75,13 +51,13 @@ void MainGame::run()
 	initSystems();
 
 	// Initialize sprites
-	sprites.push_back(new Sprite());
+	sprites.push_back(new Bengine::Sprite());
 	sprites.back()->init(-0.5f, -1, 1, 1, "Graphics/ItemSpawner.png");
 
 	//sprites.push_back(new Sprite());
 	//sprites.back()->init(0, 0, 1, 1, "Graphics/ItemSpawner.png");
 
-	sprites.push_back(new Sprite());
+	sprites.push_back(new Bengine::Sprite());
 	sprites.back()->init(0, 0, 1, 1, "Graphics/Player.png");
 
 	gameLoop();
@@ -166,8 +142,7 @@ void MainGame::render()
 	// Disable the shader
 	colorProgram.unuse();
 
-	SDL_GL_SwapWindow(window);
-
+	window.swapBuffer();
 }
 
 void MainGame::initShaders()

@@ -2,9 +2,13 @@
 
 #include <vector>
 
-class IOManager
+namespace Bengine
 {
-public:
-	static bool readFileToBuffer(std::string, std::vector<unsigned char> &);
-};
+
+	class IOManager
+	{
+	public:
+		static bool readFileToBuffer(std::string, std::vector<unsigned char> &);
+	};
+}
 

@@ -3,10 +3,15 @@
 #include "GLTexture.h"
 #include <string>
 
-class ImageLoader
+namespace Bengine
 {
-public:
 
-	static GLTexture loadPNG(std::string);
-};
+	class ImageLoader
+	{
+	public:
+
+		static GLTexture loadPNG(std::string);
+	};
+
+}
 

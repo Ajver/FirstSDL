@@ -1,7 +1,10 @@
 ﻿  MainGame.cpp
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(93): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(99): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(120): warning C4244: "argument": konwersja z "float" do "Uint32", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(126): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(159): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-  FirstSDL.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(69): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(75): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(96): warning C4244: "argument": konwersja z "float" do "Uint32", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(102): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(135): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+Bengine.lib(GLSLProgram.obj) : error LNK2019: nierozpoznany zewnętrzny symbol "void __cdecl Bengine::fatalError(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?fatalError@Bengine@@YAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) przywołany w funkcji "private: void __thiscall Bengine::GLSLProgram::compileShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int)" (?compileShader@GLSLProgram@Bengine@@AAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z)
+Bengine.lib(Window.obj) : error LNK2001: nierozpoznany symbol zewnętrzny "void __cdecl Bengine::fatalError(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?fatalError@Bengine@@YAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Bengine.lib(ImageLoader.obj) : error LNK2001: nierozpoznany symbol zewnętrzny "void __cdecl Bengine::fatalError(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?fatalError@Bengine@@YAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe : fatal error LNK1120: liczba nierozpoznanych elementów zewnętrznych: 1

@@ -8,31 +8,37 @@
 #include <fstream>
 #include <vector>
 
-class GLSLProgram
+
+namespace Bengine
 {
-public:
-	GLSLProgram();
-	~GLSLProgram();
 
-	void compileShaders(const std::string&, const std::string&);
+	class GLSLProgram
+	{
+	public:
+		GLSLProgram();
+		~GLSLProgram();
 
-	void linkShaders();
+		void compileShaders(const std::string&, const std::string&);
 
-	void addAtribute(const std::string&);
+		void linkShaders();
 
-	GLuint getUnitformLocation(const std::string &);
+		void addAtribute(const std::string&);
 
-	void use();
-	void unuse();
+		GLuint getUnitformLocation(const std::string &);
 
-private:
-	int numAttributes;
+		void use();
+		void unuse();
 
-	GLuint programID;
+	private:
+		int numAttributes;
 
-	GLuint vertexShaderID;
-	GLuint fragmentShaderID;
+		GLuint programID;
 
-	void compileShader(const std::string&, GLuint);
-};
+		GLuint vertexShaderID;
+		GLuint fragmentShaderID;
 
+		void compileShader(const std::string&, GLuint);
+	};
+
+
+}

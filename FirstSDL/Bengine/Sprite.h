@@ -7,21 +7,25 @@
 #include "Vertex.h"
 #include "GLTexture.h"
 
-class Sprite
+namespace Bengine
 {
-public:
-	Sprite();
-	~Sprite();
 
-	void init(float, float, float, float, std::string);
-	void render();
-	
-private:
-	int x, y, w, h;
+	class Sprite
+	{
+	public:
+		Sprite();
+		~Sprite();
 
-	// Vertex Buffer Object ID
-	GLuint vboID;
+		void init(float, float, float, float, std::string);
+		void render();
 
-	GLTexture texture;
-};
+	private:
+		int x, y, w, h;
 
+		// Vertex Buffer Object ID
+		GLuint vboID;
+
+		GLTexture texture;
+	};
+
+}

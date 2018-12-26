@@ -5,10 +5,11 @@
 #include <SDL/SDL.h>
 #include <GL/glew.h>
 
-#include "Errors.h"
-#include "Sprite.h"
-#include "GLSLProgram.h"
-#include "GLTexture.h"
+#include <Bengine/Errors.h>
+#include <Bengine/Sprite.h>
+#include <Bengine/GLSLProgram.h>
+#include <Bengine/GLTexture.h>
+#include <Bengine/Window.h>
 
 #include <vector>
 
@@ -29,15 +30,15 @@ public:
 
 private:
 	int WW, WH;
-	SDL_Window *window;
+	Bengine::Window window;
 
 	GameState gameState;
 
-	GLTexture playerTexture;
-	std::vector<Sprite*> sprites;
+	Bengine::GLTexture playerTexture;
+	std::vector<Bengine::Sprite*> sprites;
 	float time; 
 	
-	GLSLProgram colorProgram;
+	Bengine::GLSLProgram colorProgram;
 
 	float fps;
 	float maxFPS;

@@ -4,15 +4,19 @@
 
 #include "GLTexture.h"
 
-class TextureCache
+namespace Bengine
 {
-public:
-	TextureCache();
-	~TextureCache();
 
-	GLTexture getTexture(std::string);
+	class TextureCache
+	{
+	public:
+		TextureCache();
+		~TextureCache();
 
-private: 
-	std::map<std::string, GLTexture> textureMap;
-};
+		GLTexture getTexture(std::string);
 
+	private:
+		std::map<std::string, GLTexture> textureMap;
+	};
+
+}
