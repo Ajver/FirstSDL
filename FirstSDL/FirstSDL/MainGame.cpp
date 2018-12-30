@@ -7,6 +7,8 @@
 
 #include <glm/glm.hpp>
 
+
+
 MainGame::MainGame() :
 	time(0.0f),
 	screenWidth(1024),
@@ -29,8 +31,8 @@ void MainGame::processInput()
 {
 	SDL_Event evnt;
 
-	constexpr float CAMERA_SPEED = 20.0f;
-	constexpr float SCALE_SPEED = 0.1f;
+	constexpr float CAMERA_SPEED = 10.0f;
+	constexpr float SCALE_SPEED = 1.02f;
 
 	while (SDL_PollEvent(&evnt))
 	{
@@ -44,24 +46,29 @@ void MainGame::processInput()
 			switch (evnt.key.keysym.sym)
 			{
 			case SDLK_w:
-				camera.setPosition(camera.getPosition() + glm::vec2(0.0f, CAMERA_SPEED));
+				camera.setPosition(camera.getPosition() + glm::vec2(1.0f, CAMERA_SPEED / camera.getScale()));
 				break;
 			case SDLK_s:
-				camera.setPosition(camera.getPosition() + glm::vec2(0.0f, -CAMERA_SPEED));
+				camera.setPosition(camera.getPosition() - glm::vec2(1.0f, CAMERA_SPEED / camera.getScale()));
 				break;
 			case SDLK_a:
-				camera.setPosition(camera.getPosition() + glm::vec2(-CAMERA_SPEED, 0.0f));
+				camera.setPosition(camera.getPosition() - glm::vec2(CAMERA_SPEED / camera.getScale(), 0.0f));
 				break;
 			case SDLK_d:
-				camera.setPosition(camera.getPosition() + glm::vec2(CAMERA_SPEED, 0.0f));
+				camera.setPosition(camera.getPosition() + glm::vec2(CAMERA_SPEED / camera.getScale(), 0.0f));
 				break;
 			case SDLK_q:
-				camera.setScale(camera.getScale() - SCALE_SPEED);
+				camera.setScale(camera.getScale() / SCALE_SPEED);
 				break;
 			case SDLK_e:
-				camera.setScale(camera.getScale() + SCALE_SPEED);
+				camera.setScale(camera.getScale() * SCALE_SPEED);
+				break;
+			case SDLK_ESCAPE:
+				SDL_Quit();
+				exit(144);
 				break;
 			}
+			// End of key down
 			break;
 		}
 	}
@@ -85,10 +92,10 @@ void MainGame::run()
 
 	// Initialize sprites
 	sprites.push_back(new Bengine::Sprite());
-	sprites.back()->init(0.0f, 0.0f, screenHeight * 0.5f, screenHeight * 0.5f, "Graphics/ItemSpawner.png");
+	sprites.back()->init(0.0f, 0.0f, 32.0f, 32.0f, "Graphics/ItemSpawner.png");
 
 	sprites.push_back(new Bengine::Sprite());
-	sprites.back()->init(screenWidth * 0.5f, 0, screenHeight * 0.5f, screenHeight * 0.5f, "Graphics/Player.png");
+	sprites.back()->init(screenWidth * 0.1f, 0, 32.0f, 32.0f, "Graphics/Player.png");
 
 	gameLoop();
 }
@@ -116,6 +123,7 @@ void MainGame::gameLoop()
 			render();
 		}
 
+		// Making program slower
 		//for (int i = 0; i < 400000; i++)
 		//{
 		//	double r = rand() % (i * 2 % 2 + 1) + 1;
@@ -124,8 +132,9 @@ void MainGame::gameLoop()
 		elapsedTime = SDL_GetTicks() - startTicks;
 		
 		// Limit the fps to the max fps
-		if (1000.0f / maxFPS > elapsedTime) {
-			SDL_Delay(1000.0f / maxFPS - elapsedTime);
+		float maxET = 1000.0f / maxFPS;
+		if (maxET > elapsedTime) {
+			SDL_Delay(maxET - elapsedTime);
 		}
 
 		elapsedTime = (SDL_GetTicks() - startTicks) / 1000.0f;

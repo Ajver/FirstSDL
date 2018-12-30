@@ -1,10 +1,1 @@
-﻿  MainGame.cpp
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(99): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(105): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(128): warning C4244: "argument": konwersja z "float" do "Uint32", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(134): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(167): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-  main.cpp
-  Generowanie kodu...
-  FirstSDL.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe
+﻿  FirstSDL.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe

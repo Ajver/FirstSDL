@@ -16,7 +16,7 @@ namespace Bengine
 		Sprite();
 		~Sprite();
 
-		void init(float, float, float, float, std::string);
+		void init(float nx, float ny, float nw, float nh, std::string texturePath);
 		void render();
 
 	private:

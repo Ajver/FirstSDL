@@ -1,2 +1,12 @@
-﻿  Camera2D.cpp
+﻿  Sprite.cpp
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(22): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(23): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(24): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(25): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(35): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(38): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(41): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(45): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(48): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(51): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
   Bengine.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\Bengine.lib
