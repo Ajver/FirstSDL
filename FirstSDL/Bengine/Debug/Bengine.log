@@ -1,4 +1,6 @@
-﻿  Sprite.cpp
+﻿  ImageLoader.cpp
+  ResourceManager.cpp
+  Sprite.cpp
 d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(22): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
 d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(23): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
 d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(24): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
@@ -9,4 +11,6 @@ d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(41): warning C4244: "ar
 d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(45): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
 d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(48): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
 d:\git repositories\firstsdl\firstsdl\bengine\sprite.cpp(51): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+  TextureCache.cpp
+  Generowanie kodu...
   Bengine.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\Bengine.lib

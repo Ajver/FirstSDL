@@ -8,7 +8,7 @@ namespace Bengine
 	struct GLTexture
 	{
 		GLuint id;
-		int width;
-		int height;
+		unsigned int width;
+		unsigned int height;
 	};
 }
