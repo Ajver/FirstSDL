@@ -39,8 +39,7 @@ namespace Bengine
 	{
 	public:
 		RenderBatch(GLuint of, GLuint nv, GLuint tID) : offset(of), numVertices(nv), textureID(tID) 
-		{
-		}
+		{}
 
 		GLuint offset;
 		GLuint numVertices;

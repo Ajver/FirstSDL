@@ -2,6 +2,7 @@
 
 #include <Bengine/ImageLoader.h>
 #include <Bengine/Bengine.h>
+#include <Bengine/ResourceManager.h>
 
 #include <string>
 
@@ -21,10 +22,6 @@ MainGame::MainGame() :
 
 MainGame::~MainGame() 
 {
-	for (int i = 0; i < sprites.size(); i++)
-	{
-		delete sprites[i];
-	}
 }
 
 void MainGame::processInput() 
@@ -91,13 +88,6 @@ void MainGame::initSystems()
 void MainGame::run() 
 {
 	initSystems();
-
-	// Initialize sprites
-	sprites.push_back(new Bengine::Sprite());
-	sprites.back()->init(0.0f, 0.0f, 32.0f, 32.0f, "Graphics/ItemSpawner.png");
-
-	sprites.push_back(new Bengine::Sprite());
-	sprites.back()->init(screenWidth * 0.1f, 0, 32.0f, 32.0f, "Graphics/Player.png");
 
 	gameLoop();
 }
@@ -174,10 +164,28 @@ void MainGame::render()
 
 	glUniformMatrix4fv(pLocation, 1, GL_FALSE, &(cameraMatrix[0][0]));
 
-	// Draw sprite
-	for (int i = 0; i < sprites.size(); i++) {
-		sprites[i]->render();
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	spriteBatch.begin();
+
+	// Draw stuff here
+	glm::vec4 position(0.0f, 0.0f, 50.0f, 50.0f);
+	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
+	GLuint textureID = Bengine::ResourceManager::getTexture("Graphics/Player.png").id;
+	Bengine::Color col;
+	col.r = 255;
+	col.g = 255;
+	col.b = 255;
+	col.a = 255;
+
+	for (int i = 0; i < 1000; i++)
+	{
+		spriteBatch.draw(position, uv, textureID, 1.0f, col);
+		spriteBatch.draw(position + glm::vec4(50.0f, 0, 0, 0), uv, textureID, 1.0f, col);
 	}
+
+	spriteBatch.end();
+	spriteBatch.renderBatch();
+	///////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Disable all textures
 	glBindTexture(GL_TEXTURE_2D, 0);

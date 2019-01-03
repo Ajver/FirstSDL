@@ -25,6 +25,11 @@ namespace Bengine
 	{
 		sortType = st;
 		renderBatches.clear();
+
+		for (int i = 0; i < glyphs.size(); i++)
+		{
+			delete glyphs[i];
+		}
 		glyphs.clear();
 	}
 
@@ -45,8 +50,8 @@ namespace Bengine
 		newGlyph->bottomLeft.setColor(color.r, color.g, color.b, color.a);
 		newGlyph->bottomRight.setColor(color.r, color.g, color.b, color.a);
 				
-		newGlyph->topLeft.setPosition(destRect.x, destRect.y + uvRect.w);
-		newGlyph->topRight.setPosition(destRect.x + destRect.z, destRect.y + uvRect.w);
+		newGlyph->topLeft.setPosition(destRect.x, destRect.y + destRect.w);
+		newGlyph->topRight.setPosition(destRect.x + destRect.z, destRect.y + destRect.w);
 		newGlyph->bottomLeft.setPosition(destRect.x, destRect.y);
 		newGlyph->bottomRight.setPosition(destRect.x + destRect.z, destRect.y);
 				
@@ -56,17 +61,19 @@ namespace Bengine
 		newGlyph->bottomRight.setUV(uvRect.x + uvRect.z, uvRect.y);
 	
 		glyphs.push_back(newGlyph);
-
-		delete newGlyph;
 	}
 
 	void SpriteBatch::renderBatch()
 	{
+		glBindVertexArray(vao);
+
 		for (int i = 0; i < renderBatches.size(); i++)
 		{
 			glBindTexture(GL_TEXTURE_2D, renderBatches[i].textureID);
 			glDrawArrays(GL_TRIANGLES, renderBatches[i].offset, renderBatches[i].numVertices);
 		}
+
+		glBindVertexArray(0);
 	}
 
 	void SpriteBatch::createVertexArray()
@@ -86,8 +93,7 @@ namespace Bengine
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 		glEnableVertexAttribArray(2);
-
-
+		
 		// Position			  
 		// index, How many vars, type, normalize?, size, pointer
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, position)));
@@ -129,7 +135,7 @@ namespace Bengine
 		// Current Glyph
 		int cg = 1;
 
-		for (int cg = 0; cg < glyphs.size(); cg++)
+		for (int cg = 1; cg < glyphs.size(); cg++)
 		{
 			if (glyphs[cg]->textureID != glyphs[cg - 1]->textureID)
 			{

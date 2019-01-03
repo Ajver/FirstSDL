@@ -27,12 +27,12 @@ namespace Bengine
 
 			textureMap.insert(make_pair(texturePath, newTexture));
 
-			std::cout << "Loaded new texture: " << texturePath << std::endl;
+			//std::cout << "Loaded new texture: " << texturePath << std::endl;
 
 			return newTexture;
 		}
 
-		std::cout << "Used cached texture: " << texturePath << std::endl;
+		//std::cout << "Used cached texture: " << texturePath << std::endl;
 
 		// If texture was found - return it!
 		return mit->second;
