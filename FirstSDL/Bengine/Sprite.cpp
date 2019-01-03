@@ -75,6 +75,8 @@ namespace Bengine
 		glBindBuffer(GL_ARRAY_BUFFER, vboID);
 
 		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
+		glEnableVertexAttribArray(2);
 
 
 		// Position			  
@@ -92,6 +94,8 @@ namespace Bengine
 
 
 		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		glDisableVertexAttribArray(2);
 
 		// Unbind the VBO
 		glBindBuffer(GL_ARRAY_BUFFER, 0);

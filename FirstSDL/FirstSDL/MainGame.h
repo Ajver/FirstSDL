@@ -11,6 +11,7 @@
 #include <Bengine/GLTexture.h>
 #include <Bengine/Window.h>
 #include <Bengine/Camera2D.h>
+#include <Bengine/SpriteBatch.h>
 
 #include <vector>
 
@@ -33,11 +34,11 @@ private:
 	int screenWidth, screenHeight;
 	Bengine::Window window;
 	Bengine::Camera2D camera;
+	Bengine::SpriteBatch spriteBatch;
 
 	GameState gameState;
 
 	Bengine::GLTexture playerTexture;
-	std::vector<Bengine::Sprite*> sprites;
 	float time; 
 	
 	Bengine::GLSLProgram colorProgram;

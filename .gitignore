@@ -1,2 +1,9 @@
 
 FirstSDL/.vs/FirstSDL/v15/Browse.VC.opendb
+*.db
+*.db
+*.ipch
+FirstSDL/.vs/FirstSDL/v15/.suo
+*.ipch
+*.ipch
+*.db

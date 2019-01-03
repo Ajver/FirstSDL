@@ -46,10 +46,10 @@ void MainGame::processInput()
 			switch (evnt.key.keysym.sym)
 			{
 			case SDLK_w:
-				camera.setPosition(camera.getPosition() + glm::vec2(1.0f, CAMERA_SPEED / camera.getScale()));
+				camera.setPosition(camera.getPosition() + glm::vec2(0.0f, CAMERA_SPEED / camera.getScale()));
 				break;
 			case SDLK_s:
-				camera.setPosition(camera.getPosition() - glm::vec2(1.0f, CAMERA_SPEED / camera.getScale()));
+				camera.setPosition(camera.getPosition() - glm::vec2(0.0f, CAMERA_SPEED / camera.getScale()));
 				break;
 			case SDLK_a:
 				camera.setPosition(camera.getPosition() - glm::vec2(CAMERA_SPEED / camera.getScale(), 0.0f));
@@ -82,6 +82,8 @@ void MainGame::initSystems()
 	window.create("Game engine!!!", screenWidth, screenHeight, Bengine::WindowFlags::DEFAULT);
 	
 	camera.init(screenWidth, screenHeight);
+
+	spriteBatch.init();
 
 	initShaders();
 }

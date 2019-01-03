@@ -2,27 +2,30 @@
 
 namespace Bengine
 {
+	struct Position
+	{
+		float x, y;
+	};
+
+	struct Color
+	{
+		GLubyte r;
+		GLubyte g;
+		GLubyte b;
+		GLubyte a;
+	};
+
+	struct UV
+	{
+		float u;
+		float v;
+	};
 
 	struct Vertex
 	{
-		struct Position
-		{
-			float x, y;
-		} position;
-
-		struct Color
-		{
-			GLubyte r;
-			GLubyte g;
-			GLubyte b;
-			GLubyte a;
-		} color;
-
-		struct UV
-		{
-			float u;
-			float v;
-		} uv;
+		Position position;
+		Color color;
+		UV uv;
 
 		void setPosition(float x, float y)
 		{
