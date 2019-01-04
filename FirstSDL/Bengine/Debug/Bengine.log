@@ -1,5 +1,2 @@
-﻿  SpriteBatch.cpp
-d:\git repositories\firstsdl\firstsdl\bengine\spritebatch.cpp(29): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-d:\git repositories\firstsdl\firstsdl\bengine\spritebatch.cpp(70): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-d:\git repositories\firstsdl\firstsdl\bengine\spritebatch.cpp(138): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+﻿  InputManager.cpp
   Bengine.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\Bengine.lib

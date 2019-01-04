@@ -12,6 +12,7 @@
 #include <Bengine/Window.h>
 #include <Bengine/Camera2D.h>
 #include <Bengine/SpriteBatch.h>
+#include <Bengine/InputManager.h>
 
 #include <vector>
 
@@ -35,6 +36,7 @@ private:
 	Bengine::Window window;
 	Bengine::Camera2D camera;
 	Bengine::SpriteBatch spriteBatch;
+	Bengine::InputManager inputManager;
 
 	GameState gameState;
 

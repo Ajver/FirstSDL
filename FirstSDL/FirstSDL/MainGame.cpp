@@ -40,34 +40,31 @@ void MainGame::processInput()
 			//std::cout << "X> " << evnt.motion.x << "  |  " << evnt.motion.y << std::endl;
 			break;
 		case SDL_KEYDOWN:
-			switch (evnt.key.keysym.sym)
-			{
-			case SDLK_w:
-				camera.setPosition(camera.getPosition() + glm::vec2(0.0f, CAMERA_SPEED / camera.getScale()));
-				break;
-			case SDLK_s:
-				camera.setPosition(camera.getPosition() - glm::vec2(0.0f, CAMERA_SPEED / camera.getScale()));
-				break;
-			case SDLK_a:
-				camera.setPosition(camera.getPosition() - glm::vec2(CAMERA_SPEED / camera.getScale(), 0.0f));
-				break;
-			case SDLK_d:
-				camera.setPosition(camera.getPosition() + glm::vec2(CAMERA_SPEED / camera.getScale(), 0.0f));
-				break;
-			case SDLK_q:
-				camera.setScale(camera.getScale() / SCALE_SPEED);
-				break;
-			case SDLK_e:
-				camera.setScale(camera.getScale() * SCALE_SPEED);
-				break;
-			case SDLK_ESCAPE:
-				SDL_Quit();
-				exit(144);
-				break;
-			}
-			// End of key down
+			inputManager.pressKey(evnt.key.keysym.sym);
+			break;
+		case SDL_KEYUP:
+			inputManager.releaseKey(evnt.key.keysym.sym);
 			break;
 		}
+	}
+	
+
+	if (inputManager.isKeyPressed(SDLK_w))
+		camera.setPosition(camera.getPosition() + glm::vec2(0.0f, CAMERA_SPEED / camera.getScale()));
+	if (inputManager.isKeyPressed(SDLK_s))
+		camera.setPosition(camera.getPosition() - glm::vec2(0.0f, CAMERA_SPEED / camera.getScale()));
+	if (inputManager.isKeyPressed(SDLK_a))
+		camera.setPosition(camera.getPosition() - glm::vec2(CAMERA_SPEED / camera.getScale(), 0.0f));
+	if (inputManager.isKeyPressed(SDLK_d))
+		camera.setPosition(camera.getPosition() + glm::vec2(CAMERA_SPEED / camera.getScale(), 0.0f));
+	if (inputManager.isKeyPressed(SDLK_q))
+		camera.setScale(camera.getScale() / SCALE_SPEED);
+	if (inputManager.isKeyPressed(SDLK_e))
+		camera.setScale(camera.getScale() * SCALE_SPEED);
+	if (inputManager.isKeyPressed(SDLK_ESCAPE))
+	{
+		SDL_Quit();
+		exit(144);
 	}
 }
 
@@ -177,10 +174,10 @@ void MainGame::render()
 	col.b = 255;
 	col.a = 255;
 
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		spriteBatch.draw(position, uv, textureID, 1.0f, col);
-		spriteBatch.draw(position + glm::vec4(50.0f, 0, 0, 0), uv, textureID, 1.0f, col);
+		spriteBatch.draw(position + glm::vec4(30.0f, 0, 0, 0), uv, textureID, 1.0f, col);
 	}
 
 	spriteBatch.end();
