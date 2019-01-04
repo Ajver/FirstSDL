@@ -54,6 +54,10 @@ namespace Bengine
 
 		glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
 
+		// Enable alpha blend
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		return 0;
 	}
 

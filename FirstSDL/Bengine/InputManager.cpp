@@ -22,6 +22,12 @@ namespace Bengine
 		keysMap[keyID] = false;
 	}
 
+	void InputManager::setMousePosition(float x, float y)
+	{
+		mousePosition.x = x;
+		mousePosition.y = y;
+	}
+
 	bool InputManager::isKeyPressed(unsigned int keyID)
 	{
 		if (keysMap.find(keyID) != keysMap.end())
@@ -32,4 +38,8 @@ namespace Bengine
 		return false;
 	}
 
+	glm::vec2 InputManager::getMousePosition() const
+	{
+		return mousePosition;
+	}
 }

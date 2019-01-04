@@ -42,6 +42,15 @@ namespace Bengine
 		}
 	}
 
+	glm::vec2 Camera2D::screenToWorldPos(glm::vec2 screenPosition)
+	{
+		screenPosition -= glm::vec2(screenWidth * 0.5f, screenHeight * 0.5f);
+		screenPosition /= scale;
+		screenPosition += position;
+
+		return screenPosition;
+	}
+
 	void Camera2D::setPosition(glm::vec2 newPos)
 	{
 		position = newPos;

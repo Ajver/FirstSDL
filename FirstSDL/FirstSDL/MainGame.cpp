@@ -36,14 +36,20 @@ void MainGame::processInput()
 		switch (evnt.type)
 		{
 		case SDL_QUIT: gameState = GameState::EXIT; break;
-		case SDL_MOUSEMOTION: 
-			//std::cout << "X> " << evnt.motion.x << "  |  " << evnt.motion.y << std::endl;
-			break;
 		case SDL_KEYDOWN:
 			inputManager.pressKey(evnt.key.keysym.sym);
 			break;
 		case SDL_KEYUP:
 			inputManager.releaseKey(evnt.key.keysym.sym);
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			inputManager.pressKey(evnt.button.button);			
+			break;
+		case SDL_MOUSEBUTTONUP:
+			inputManager.releaseKey(evnt.button.button);
+			break;
+		case SDL_MOUSEMOTION:
+			inputManager.setMousePosition(evnt.motion.x, evnt.motion.y);
 			break;
 		}
 	}
@@ -61,6 +67,17 @@ void MainGame::processInput()
 		camera.setScale(camera.getScale() / SCALE_SPEED);
 	if (inputManager.isKeyPressed(SDLK_e))
 		camera.setScale(camera.getScale() * SCALE_SPEED);
+
+	if (inputManager.isKeyPressed(SDL_BUTTON_LEFT))
+	{
+		glm::vec2 mousePos = inputManager.getMousePosition();
+		mousePos = camera.screenToWorldPos(mousePos);
+
+		std::cout << "Clicked (mouseXY): " << 
+			mousePos.x << " | " << 
+			mousePos.y << std::endl;
+	}
+
 	if (inputManager.isKeyPressed(SDLK_ESCAPE))
 	{
 		SDL_Quit();
@@ -165,7 +182,7 @@ void MainGame::render()
 	spriteBatch.begin();
 
 	// Draw stuff here
-	glm::vec4 position(0.0f, 0.0f, 50.0f, 50.0f);
+	glm::vec4 position(0.0f, 0.0f, 32.0f, 32.0f);
 	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
 	GLuint textureID = Bengine::ResourceManager::getTexture("Graphics/Player.png").id;
 	Bengine::Color col;
@@ -190,6 +207,7 @@ void MainGame::render()
 	// Disable the shader
 	colorProgram.unuse();
 
+	// Show stuff on user screen
 	window.swapBuffer();
 }
 

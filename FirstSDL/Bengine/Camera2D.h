@@ -18,6 +18,8 @@ namespace Bengine
 		void setPosition(glm::vec2);
 		void setScale(float);
 
+		glm::vec2 screenToWorldPos(glm::vec2 screenPosition);
+
 		glm::vec2 getPosition();
 		float getScale();
 		glm::mat4 getCameraMatrix();
