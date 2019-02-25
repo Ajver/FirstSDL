@@ -9,10 +9,16 @@ namespace Bengine
 {
 	enum WindowFlags : unsigned int
 	{
-		// Create the window invisible
+		// Noresizable, visible window
 		DEFAULT = 0x0,
+
+		// Window invisible
 		INVISIBLE = 0x1,
+
+		// Borderless and fillign the screen
 		FULLSCREEN = 0x2,
+
+		// Noresizable
 		BORDERLESS = 0x4
 	};
 

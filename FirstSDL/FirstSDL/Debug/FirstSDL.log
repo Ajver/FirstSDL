@@ -1,7 +1,9 @@
 ﻿  MainGame.cpp
 d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(52): warning C4244: "argument": konwersja z "Sint32" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(116): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(122): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(147): warning C4244: "argument": konwersja z "float" do "Uint32", możliwa utrata danych
-d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(153): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(112): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(118): warning C4244: "inicjowanie": konwersja z "Uint32" do "float", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(143): warning C4244: "argument": konwersja z "float" do "Uint32", możliwa utrata danych
+d:\git repositories\firstsdl\firstsdl\firstsdl\maingame.cpp(149): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+  main.cpp
+  Generowanie kodu...
   FirstSDL.vcxproj -> D:\Git repositories\FirstSDL\FirstSDL\Debug\FirstSDL.exe

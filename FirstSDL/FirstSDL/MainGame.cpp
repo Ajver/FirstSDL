@@ -166,8 +166,8 @@ void MainGame::render()
 	colorProgram.use();
 
 	// We are using texture uint 0
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, playerTexture.id);
+	//glActiveTexture(GL_TEXTURE0);
+	//glBindTexture(GL_TEXTURE_2D, playerTexture.id);
 	
 	GLint textureLocation = colorProgram.getUnitformLocation("mySampler");
 	glUniform1i(textureLocation, 0);
